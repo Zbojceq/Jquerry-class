@@ -31,3 +31,15 @@ def number_check(number):
         return f'Liczba podzielna przez 3'
     if int(number) % 5 == 0:
         return f'Liczba podzielna przez 5'
+    
+
+import requests
+
+@app.route('/api') 
+def yesorno():
+    response = requests.get('https://yesno.wtf/api') 
+    data = response.json()
+    fact = data['answer']
+    return fact   
+    
+

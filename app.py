@@ -6,19 +6,18 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello, Ernest!'
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 @app.route('/about/<name>')
 def hello(name):
     return render_template('about.html', name=name)
 
 
-from flask import Flask, render_template, request
-@app.route('/method', methods=['GET', 'POST'])
-def method():
+@app.route('/form', methods=['GET', 'POST'])
+def handle_form():
     if request.method == 'POST':
-        return 'Użyto metody POST'
-    else:
-        return 'Użyto metody GET. '
+        name = request.form['name']
+        return render_template('result.html', name=name)
+    return render_template('form.html')
     
 @app.route('/hello/<name>')
 def hello_name(name):
